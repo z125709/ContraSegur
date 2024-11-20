@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>Contraseñes Segures</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="zxcvbn-async.js" type="text/javascript"></script>
+        <script src="js/zxcvbn-async.js" type="text/javascript"></script>
           <script>
             function Iniciar()
             {
@@ -59,7 +59,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             AnysProcessament = CostComputacional / (365*24*3600);
             DiesProcessament = CostComputacional/ (24*3600);
             nivel_robustesa = base * exponente/16;
-            /* result = zxcvbn(pwd); */  
+            result = zxcvbn(pwd);   
  
             if (CostComputacional < 1e3)  nivel_robustesa=0 ;
             else if (CostComputacional< 1e6 )  nivel_robustesa= 1 ;
@@ -67,16 +67,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             else if (CostComputacional < 1e10)  nivel_robustesa= 3 ;
             else nivel_robustesa= 4  ; 
             
-            window.alert("nivel= " + nivel_robustesa);
-            
             window.alert("Password: " + pwd  + 
                         "\n\ Cost Computacional : " + CostComputacional.toExponential() + 
-                        "\n\ Nivel: " + nivel_robustesa + "/4, "  + 
-                        "\n\ Anys de processament: " + AnysProcessament + 
-                        "\n\ Dies de processament: " + DiesProcessament /* + 
-                        "\n\ un zxcvbn Score de : " + result.score + "/4."*/ );
-           
-            
+                        "\n\ Nivel de robustesa: " + nivel_robustesa + "/4, "  + 
+                        "\n\ Anys de processament: " + AnysProcessament.toExponential() + 
+                        "\n\ Dies de processament: " + DiesProcessament.toExponential()  + 
+                        "\n\ zxcvbn Score de : " + result.score + "/4." );
         }
         
         </script>                              
