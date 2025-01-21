@@ -16,8 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             #Diccionari {position:relative; top: 100px; left:240px}
         </style>
         
-        <script src="js_diccionaris i patrons.js" type="text/javascript"></script>
-        
+        <script src="js/js_diccionaris_patrons.js" type="text/javascript"></script>
     </head>
     
     <body>  
@@ -48,9 +47,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         Diccionari <input type="file" id="Diccionari"  />
         <a href=" patrons"></a>
          Patrons<input type="file" id="patrons" />
-
-
+         <script>
+        document.getElementById('Diccionari').addEventListener('change', readSingleFile, false );
+        document.getElementById('patrons').addEventListener('change', readSingleFile, false );
+        </script>
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
         <div id="idioma" translate="no"> 
         <a href="https://dreamy-kleicha-d4c27a.netlify.app/"   
             id='ca'><img src="img/ca.png" alt=""/></a>
