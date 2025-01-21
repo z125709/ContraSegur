@@ -7,8 +7,7 @@ diccionari_correcte = [];
 
             function Comprovar()
             {
-               window.alert("Password: " + document.getElementById("pwd").value);
-               
+            
               document.getElementById("minimcar").checked = false;
               document.getElementById("min").checked = false;
               document.getElementById("num").checked = false;
