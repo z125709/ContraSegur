@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
 
-diccionari_correcte = [];
+diccionari = [];
 
-            function Comprovar()
+  function Comprovar()
             {
             
               document.getElementById("minimcar").checked = false;
@@ -43,7 +43,7 @@ diccionari_correcte = [];
     
     }
     
-    function Iniciar()
+  function Iniciar()
             {     
             var pwd = document.getElementById("pwd").value;
             base= 0;               
@@ -71,55 +71,133 @@ diccionari_correcte = [];
                         "\n\ Nivel de robustesa: " + nivel + "/4, "  + 
                         "\n\ Anys de processament: " + AnysProcessament.toExponential() + 
                         "\n\ Dies de processament: " + DiesProcessament.toExponential()  + 
-                        "\n\ zxcvbn Score de : " + result.score + "/4." );
-            CheckPasswordDiccionary(pwd);    
+                        "\n\ zxcvbn Score de : " + result.score + "/4." +
+                        "\n\ Diccionario " + CheckPasswordDiccionary(pwd)+
+                        "\n\ Repeticions " + Repeticions(pwd)+ 
+                        "\n\ Patrons "/* + CheckPasswordPatron(pwd)*/
+              
+              );
+             
+                       
         }
-                   function keyboard(){
+        
+  function keyboard(){
                 document.getElementById("Teclat").hidden = !document.getElementById("Teclat").hidden;  
             }
-            function ASCII(){
+           
+  function ASCII(){
                 document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden;  
             }
             
-            
-            
-        
   function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
 
     if (f) {
       var r = new FileReader();
-      r.onload = function(e) { 
-	      var contents = e.target.result;
-        window.alert( "Got the file.n" 
+      r.onload = function(e) {  
+        var contents = e.target.result;
+        return "Got the file.n" 
               +" name: " + f.name + "n"
               +" type: " + f.type + "n"
               +" size: " + f.size + " bytes n"
-              + " starts with: " + contents.substr(0, contents.indexOf("\n"))
-        );  
-            diccionari_correcte= contents.replaceAll("\n",", ");
-            window.alert(diccionari_correcte);
-      }
+              + " starts with: " + contents.substr(0, contents.indexOf("\n"));  
+      
+	    
+      if (contents.substr(0,1) == "/") {
+            stream1= contents.replaceAll("\r\n",",");
+            stream2= stream1.replaceAll("/","");
+            stream3= stream2.split(",");
+            for (i=0; i< stream3.length; i++){ 
+            patrons[i]= new RegExp(stream3[i]);
+        }
+        }else{
+            diccionari =contents.replaceAll("\r\n",",");
+        }
+        }
       r.readAsText(f);
     } else { 
-      window.alert("Failed to load file");
+      return "Failed to load file";
     }
   }
         
   function CheckPasswordDiccionary(pwd){
    
     
-      if (diccionari_correcte.includes(pwd) == true) { 
-      window.alert("La contrasenya introuïda, "
-              + pwd + " es troba dins la llista de contrasenyes no segures.");
+      if (diccionari.includes(pwd) == true) { 
+      return "La contrasenya introuïda, '"
+              + pwd + "' es troba dins la llista de contrasenyes no segures.";
       
      }else{
-         window.alert("Contrasenya no perteneixent a la llista");
+         return "Contrasenya no perteneixent a la llista";
      }
+   
+  }  
+ 
+  function Repeticions(pwd){
+    const repeticionsMultiples = /(.)\1{2,}/;
+    if (repeticionsMultiples.test(pwd.toLowerCase())) {
+        
+    return "Existeixen repeticions";
+    }else{
+        return "No trobam repeticions";}
+  }
       
-      
-      
-      
-  }       
-    
+ function CheckPasswordPatron(pwd){
+   for(i= 0; i<patrons.length; i++);
+        if (patrons[i].test(pwd.toLowerCase())=== true) { 
+          return "Trobam patrons a la teva contraseña, '"
+              + pwd + "'";
+     }
+     else{
+         return "No contiene patrones";
+     } 
+  }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var diccionari = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
+var diccionari = ["password", "guest", "dragon", "baseball", "football", "monkey", "letmein", "696969",
+    "shadow", "master", "mustang", "michael", "pussy", "superman", "fuckyou", "121212", "killer", "trustno1", "jordan",
+    "jennifer", "hunter", "buster", "soccer", "harley", "batman", "tigger", "sunshine", "iloveyou", "fuckme", "charlie",
+    "thomas", "hockey", "ranger", "daniel", "starwars", "klaster", "112233", "george", "asshole", "computer", "michelle",
+    "jessica", "pepper", "131313", "freedom", "pass", "fuck", "maggie", "159753", "ginger", "princess", "joshua", "cheese",
+    "amanda", "summer", "love", "ashley", "6969", "nicole", "chelsea", "biteme", "matthew", "access", "yankees", "dallas",
+    "austin", "thunder", "taylor", "matrix", "minecraft", "william", "corvette", "hello", "martin", "heather", "secret",
+    "fucker", "merlin", "diamond", "hammer", "silver", "anthony", "justin", "test", "bailey", "q1w2e3r4t5", "patrick",
+    "internet", "scooter", "orange", "golfer", "cookie", "richard", "samantha", "bigdog", "guitar", "jackson", "whatever",
+    "mickey", "chicken", "sparky", "snoopy", "maverick", "phoenix", "camaro", "sexy", "peanut", "morgan", "welcome",
+    "falcon", "cowboy", "ferrari", "samsung", "andrea", "smokey", "steelers", "joseph", "mercedes", "dakota", "arsenal",
+    "eagles", "melissa", "boomer", "booboo", "spider", "nascar", "monster", "tigers", "yellow", "gateway", "marina",
+    "diablo", "bulldog", "compaq", "purple", "hardcore", "banana", "junior", "hannah", "porsche", "lakers", "iceman",
+    "money", "cowboys", "london", "tennis", "ncc1701", "coffee", "scooby", "miller", "boston", "q1w2e3r4", "fuckoff",
+    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"];
+
+  // var patrons = ["/123/", "/abc/", "/qwerty/"];
+var patrons = [/098/, /0pm/, /0pñ/, /123/, /1aq/, /1qa/, /234/, /2ws/, /2zs/, /321/, /345/, /3ed/, /432/, /456/,
+    /4rf/, /543/, /567/, /5tg/, /654/, /678/, /6yh/, /765/, /789/, /7uj/, /876/, /890/, /8ik/, /987/, /9ol/,
+    /abc/, /aq1/, /aqw/, /asd/, /aze/, /bcç/, /bcd/, /bgt/, /bnm/, /bvc/, /cba/, /çcb/, /cçd/, /cde/, /çde/,
+    /cvb/, /cxw/, /cxz/, /dcb/, /dçc/, /de3/, /def/, /dfg/, /dsa/, /dsq/, /edc/, /edç/, /efg/, /ert/, /ewq/,
+    /eza/, /fds/, /fed/, /fgh/, /fr4/, /gfd/, /gfe/, /ghi/, /ghj/, /gt5/, /hgf/, /hij/, /hjk/, /hy6/, /ihg/,
+    /ijk/, /iop/, /iuy/, /jhg/, /jih/, /jkl/, /ju7/, /ki8/, /kjh/, /kji/, /klm/, /klñ/, /lkj/, /lmn/, /lo9/,
+    /mju/, /mlk/, /mnb/, /mnñ/, /mno/, /mp0/, /nbv/, /nhy/, /nml/, /nño/, /nop/, /ñlk/, /ñnm/, /ñop/, /ñp0/,
+    /oiu/, /onm/, /oñn/, /opq/, /poi/, /pon/, /poñ/, /pqr/, /qa1/, /qaz/, /qpo/, /qrs/, /qsd/, /qwe/, /rew/,
+    /rez/, /rfv/, /rqp/, /rst/, /rty/, /sdf/, /srq/, /stu/, /sw2/, /sz2/, /tgb/, /tre/, /tsr/, /tuv/, /tyu/,
+    /uio/, /ujm/, /uts/, /uvw/, /uyt/, /vbn/, /vcx/, /vfr/, /vut/, /vwx/, /wer/, /wqa/, /wsx/, /wvu/, /wxc/,
+    /wxy/, /xcv/, /xsw/, /xsz/, /xwv/, /xyz/, /yhn/, /ytr/, /yui/, /yxw/, /zaq/, /zer/, /zsx/, /zxc/, /zyx/]; 
