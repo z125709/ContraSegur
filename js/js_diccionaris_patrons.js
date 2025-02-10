@@ -4,7 +4,7 @@
  */
 
 diccionari = [];
-
+patrons = [];
   function Comprovar()
             {
             
@@ -36,15 +36,9 @@ diccionari = [];
                     else 
                     document.getElementById("min").checked = true; 
             }
- 
-            
-    
-    
-    
     }
     
-  function Iniciar()
-            {     
+  function Iniciar() {     
             var pwd = document.getElementById("pwd").value;
             base= 0;               
             if (document.getElementById("num").checked === true) {base= base + 10 ;}
@@ -67,18 +61,13 @@ diccionari = [];
             else nivel= 4  ; 
             
             window.alert("Password: " + pwd  + 
+                        "\n\ resumen: " + resumen (pwd) +
                         "\n\ Cost Computacional : " + CostComputacional.toExponential() + 
                         "\n\ Nivel de robustesa: " + nivel + "/4, "  + 
                         "\n\ Anys de processament: " + AnysProcessament.toExponential() + 
                         "\n\ Dies de processament: " + DiesProcessament.toExponential()  + 
-                        "\n\ zxcvbn Score de : " + result.score + "/4." +
-                        "\n\ Diccionario " + CheckPasswordDiccionary(pwd)+
-                        "\n\ Repeticions " + Repeticions(pwd)+ 
-                        "\n\ Patrons "/* + CheckPasswordPatron(pwd)*/
+                        "\n\ zxcvbn Score de : " + result.score + "/4.");
               
-              );
-             
-                       
         }
         
   function keyboard(){
@@ -88,7 +77,7 @@ diccionari = [];
   function ASCII(){
                 document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden;  
             }
-            
+
   function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
@@ -97,11 +86,11 @@ diccionari = [];
       var r = new FileReader();
       r.onload = function(e) {  
         var contents = e.target.result;
-        return "Got the file.n" 
+        window.alert( "Got the file.n" 
               +" name: " + f.name + "n"
               +" type: " + f.type + "n"
               +" size: " + f.size + " bytes n"
-              + " starts with: " + contents.substr(0, contents.indexOf("\n"));  
+              + " starts with: " + contents.substr(0, contents.indexOf("\n")));  
       
 	    
       if (contents.substr(0,1) == "/") {
@@ -109,10 +98,11 @@ diccionari = [];
             stream2= stream1.replaceAll("/","");
             stream3= stream2.split(",");
             for (i=0; i< stream3.length; i++){ 
-            patrons[i]= new RegExp(stream3[i]);
-        }
+                patrons[i]= new RegExp(stream3[i]);
+         }
         }else{
-            diccionari =contents.replaceAll("\r\n",",");
+            stream1 =contents.replaceAll("\r\n",",");
+             diccionari= stream1.split(",");// revisar que es
         }
         }
       r.readAsText(f);
@@ -124,12 +114,11 @@ diccionari = [];
   function CheckPasswordDiccionary(pwd){
    
     
-      if (diccionari.includes(pwd) == true) { 
-      return "La contrasenya introuïda, '"
-              + pwd + "' es troba dins la llista de contrasenyes no segures.";
+      if (diccionari.includes(pwd.toLowerCase()) == true) { 
+      return true;
       
      }else{
-         return "Contrasenya no perteneixent a la llista";
+         return false;
      }
    
   }  
@@ -138,30 +127,50 @@ diccionari = [];
     const repeticionsMultiples = /(.)\1{2,}/;
     if (repeticionsMultiples.test(pwd.toLowerCase())) {
         
-    return "Existeixen repeticions";
+    return true;
     }else{
-        return "No trobam repeticions";}
+        return false;}
   }
       
  function CheckPasswordPatron(pwd){
-   for(i= 0; i<patrons.length; i++);
+   for(i= 0; i<patrons.length; i++){
+        
         if (patrons[i].test(pwd.toLowerCase())=== true) { 
-          return "Trobam patrons a la teva contraseña, '"
-              + pwd + "'";
+          return true;
      }
-     else{
-         return "No contiene patrones";
-     } 
-  }  
+    } 
+    return false;
+   }
+   
 
+ 
 
+function resumen (pwd){
+    if (CheckPasswordDiccionary(pwd)){
+        return "La contrasenya introduïda és comuna";
+    }
+    if(CheckPasswordPatron(pwd)){
+        return "La contrasenya introduïda conté patrons";
+    }
+    if(Repeticions(pwd)){
+        return "repeticions";
+    }  
+      if( !document.getElementById("num").checked||
+        !document.getElementById("min").checked||
+        !document.getElementById("may").checked){
+        return "La contrasenya introduïda careix de nombres, minúscules o mayúscules"; 
+    }   
 
-
-
-
-
-
-
+    if( !document.getElementById("esp").checked){
+        return "La contrasenya introduïda careix de caràcters especials";
+    }
+    if( !document.getElementById("minimcar").checked){
+        return "La contrasenya introduïda ha de contenir al menys 8 caracteres";
+    }   
+    else{ return "La contrasenya introduïda és segura";}
+    }
+ /*
+*/
 
 
 
