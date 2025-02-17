@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
 
-diccionari = [];
+//diccionari = [];
+
 patrons = [];
   function Comprovar()
             {
@@ -61,12 +62,12 @@ patrons = [];
             else nivel= 4  ; 
             
             window.alert("Password: " + pwd  + 
-                        "\n\ resumen: " + resumen (pwd) +
-                        "\n\ Cost Computacional : " + CostComputacional.toExponential() + 
-                        "\n\ Nivel de robustesa: " + nivel + "/4, "  + 
-                        "\n\ Anys de processament: " + AnysProcessament.toExponential() + 
-                        "\n\ Dies de processament: " + DiesProcessament.toExponential()  + 
-                        "\n\ zxcvbn Score de : " + result.score + "/4.");
+                        "\n\ -" + resumen (pwd) +
+                        "\n\ -Cost Computacional : " + CostComputacional.toExponential() + 
+                        "\n\ -Nivel de robustesa: " + nivel + "/4, "  + 
+                        "\n\ -Anys de processament: " + AnysProcessament.toExponential() + 
+                        "\n\ -Dies de processament: " + DiesProcessament.toExponential()  + 
+                        "\n\ -zxcvbn Score de : " + result.score + "/4.");
               
         }
         
@@ -86,13 +87,13 @@ patrons = [];
       var r = new FileReader();
       r.onload = function(e) {  
         var contents = e.target.result;
-        window.alert( "Got the file.n" 
-              +" name: " + f.name + "n"
+       window.alert( "Got the file.n" 
+             /* +" name: "  +  f.name + "n"
               +" type: " + f.type + "n"
               +" size: " + f.size + " bytes n"
-              + " starts with: " + contents.substr(0, contents.indexOf("\n")));  
-      
-	    
+              + " starts with: " + contents.substr(0, contents.indexOf("\n"))*/);  
+       
+       
       if (contents.substr(0,1) == "/") {
             stream1= contents.replaceAll("\r\n",",");
             stream2= stream1.replaceAll("/","");
@@ -101,10 +102,14 @@ patrons = [];
                 patrons[i]= new RegExp(stream3[i]);
          }
         }else{
-            stream1 =contents.replaceAll("\r\n",",");
-             diccionari= stream1.split(",");// revisar que es
+            stream1= contents.replaceAll("\r\n",",");
+            stream3= stream1.replaceAll("\n",",");
+            stream3= stream2.split(",");
+            for (i=0; i< stream3.length; i++){ 
+             diccionari= diccionari.add(stream3[i]);
+         }
         }
-        }
+      }
       r.readAsText(f);
     } else { 
       return "Failed to load file";
@@ -114,7 +119,7 @@ patrons = [];
   function CheckPasswordDiccionary(pwd){
    
     
-      if (diccionari.includes(pwd.toLowerCase()) == true) { 
+      if (diccionari.has(pwd.toLowerCase())) { 
       return true;
       
      }else{
@@ -135,16 +140,13 @@ patrons = [];
  function CheckPasswordPatron(pwd){
    for(i= 0; i<patrons.length; i++){
         
-        if (patrons[i].test(pwd.toLowerCase())=== true) { 
+        if (patrons[i].test(pwd.toLowerCase())) { 
           return true;
      }
     } 
     return false;
    }
-   
-
  
-
 function resumen (pwd){
     if (CheckPasswordDiccionary(pwd)){
         return "La contrasenya introduïda és comuna";
@@ -172,17 +174,8 @@ function resumen (pwd){
  /*
 */
 
-
-
-
-
-
-
-
-
-
 // var diccionari = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
-var diccionari = ["password", "guest", "dragon", "baseball", "football", "monkey", "letmein", "696969",
+var diccionari = new Set([/*"password", "guest", "dragon", "baseball", "football", "monkey", "letmein", "696969",
     "shadow", "master", "mustang", "michael", "pussy", "superman", "fuckyou", "121212", "killer", "trustno1", "jordan",
     "jennifer", "hunter", "buster", "soccer", "harley", "batman", "tigger", "sunshine", "iloveyou", "fuckme", "charlie",
     "thomas", "hockey", "ranger", "daniel", "starwars", "klaster", "112233", "george", "asshole", "computer", "michelle",
@@ -196,7 +189,7 @@ var diccionari = ["password", "guest", "dragon", "baseball", "football", "monkey
     "eagles", "melissa", "boomer", "booboo", "spider", "nascar", "monster", "tigers", "yellow", "gateway", "marina",
     "diablo", "bulldog", "compaq", "purple", "hardcore", "banana", "junior", "hannah", "porsche", "lakers", "iceman",
     "money", "cowboys", "london", "tennis", "ncc1701", "coffee", "scooby", "miller", "boston", "q1w2e3r4", "fuckoff",
-    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"];
+    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"*/]);
 
   // var patrons = ["/123/", "/abc/", "/qwerty/"];
 var patrons = [/098/, /0pm/, /0pñ/, /123/, /1aq/, /1qa/, /234/, /2ws/, /2zs/, /321/, /345/, /3ed/, /432/, /456/,
@@ -210,3 +203,5 @@ var patrons = [/098/, /0pm/, /0pñ/, /123/, /1aq/, /1qa/, /234/, /2ws/, /2zs/, /
     /rez/, /rfv/, /rqp/, /rst/, /rty/, /sdf/, /srq/, /stu/, /sw2/, /sz2/, /tgb/, /tre/, /tsr/, /tuv/, /tyu/,
     /uio/, /ujm/, /uts/, /uvw/, /uyt/, /vbn/, /vcx/, /vfr/, /vut/, /vwx/, /wer/, /wqa/, /wsx/, /wvu/, /wxc/,
     /wxy/, /xcv/, /xsw/, /xsz/, /xwv/, /xyz/, /yhn/, /ytr/, /yui/, /yxw/, /zaq/, /zer/, /zsx/, /zxc/, /zyx/]; 
+
+//listas, colas, estructuras dinamicas, arboles
