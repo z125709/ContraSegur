@@ -68,7 +68,14 @@ patrons = [];
                         "\n\ -Anys de processament: " + AnysProcessament.toExponential() + 
                         "\n\ -Dies de processament: " + DiesProcessament.toExponential()  + 
                         "\n\ -zxcvbn Score de : " + result.score + "/4.");
-              
+                
+            if (confirm("Vols desar la contrasenya?") ){
+                localStorage.setItem("usr", document.getElementById("usr").value);
+                localStorage.setItem("pwd", document.getElementById("pwd").value);
+                const myWindow= window.open("desar.html","blank", "width=460, height=600, left=0, top=0, \n\
+                location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0" ); 
+              }  
+ 
         }
         
   function keyboard(){
@@ -82,8 +89,7 @@ patrons = [];
   function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
-
-    if (f) {
+ if (f) {
       var r = new FileReader();
       r.onload = function(e) {  
         var contents = e.target.result;
@@ -103,13 +109,14 @@ patrons = [];
          }
         }else{
             stream1= contents.replaceAll("\r\n",",");
-            stream3= stream1.replaceAll("\n",",");
+            stream2= stream1.replaceAll("\n",",");
             stream3= stream2.split(",");
             for (i=0; i< stream3.length; i++){ 
              diccionari= diccionari.add(stream3[i]);
          }
         }
       }
+   
       r.readAsText(f);
     } else { 
       return "Failed to load file";
@@ -171,11 +178,14 @@ function resumen (pwd){
     }   
     else{ return "La contrasenya introduïda és segura";}
     }
- /*
-*/
+ 
+ /* */
+   
+/**/
+
 
 // var diccionari = new Array(["password", "123456", "123456789", "guest", "qwerty", "12345678", "111111", "12345"]);
-var diccionari = new Set([/*"password", "guest", "dragon", "baseball", "football", "monkey", "letmein", "696969",
+var diccionari = new Set(["password", "guest", "dragon", "baseball", "football", "monkey", "letmein", "696969",
     "shadow", "master", "mustang", "michael", "pussy", "superman", "fuckyou", "121212", "killer", "trustno1", "jordan",
     "jennifer", "hunter", "buster", "soccer", "harley", "batman", "tigger", "sunshine", "iloveyou", "fuckme", "charlie",
     "thomas", "hockey", "ranger", "daniel", "starwars", "klaster", "112233", "george", "asshole", "computer", "michelle",
@@ -189,7 +199,7 @@ var diccionari = new Set([/*"password", "guest", "dragon", "baseball", "football
     "eagles", "melissa", "boomer", "booboo", "spider", "nascar", "monster", "tigers", "yellow", "gateway", "marina",
     "diablo", "bulldog", "compaq", "purple", "hardcore", "banana", "junior", "hannah", "porsche", "lakers", "iceman",
     "money", "cowboys", "london", "tennis", "ncc1701", "coffee", "scooby", "miller", "boston", "q1w2e3r4", "fuckoff",
-    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"*/]);
+    "brandon", "yamaha", "chester", "mother", "forever", "johnny", "edward", "oliver", "redsox", "player", "nikita"]);
 
   // var patrons = ["/123/", "/abc/", "/qwerty/"];
 var patrons = [/098/, /0pm/, /0pñ/, /123/, /1aq/, /1qa/, /234/, /2ws/, /2zs/, /321/, /345/, /3ed/, /432/, /456/,
@@ -204,4 +214,4 @@ var patrons = [/098/, /0pm/, /0pñ/, /123/, /1aq/, /1qa/, /234/, /2ws/, /2zs/, /
     /uio/, /ujm/, /uts/, /uvw/, /uyt/, /vbn/, /vcx/, /vfr/, /vut/, /vwx/, /wer/, /wqa/, /wsx/, /wvu/, /wxc/,
     /wxy/, /xcv/, /xsw/, /xsz/, /xwv/, /xyz/, /yhn/, /ytr/, /yui/, /yxw/, /zaq/, /zer/, /zsx/, /zxc/, /zyx/]; 
 
-//listas, colas, estructuras dinamicas, arboles
+//listas, colas, estructuras dinamicas, arboles,set, map,  dinamicas i constantes, variables tipos, cookies ,unitat 5
