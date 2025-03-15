@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Cookies</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="Iniciar();">
+        <div>Vols desar l'inici de sessió a ContraSegur?</div>
+        <form>
+            <label for="usr">Usuari o correu:</label><br>
+            <input type="text" id="usr" name="usr" required><br>
+            <label for="pwdl">Contrasenya:</label><br>
+            <input type="password" id="pwd" required><br>   
+        </form>
+        
+        
+        
+        
+        
+      <script>
+          
+          function Iniciar() {
+ 
+              document.getElementById("usr").value = localStorage.getItem("usr");
+              document.getElementById("pwd").value = localStorage.getItem("pwd");
+               
+              }  
+          function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  let user = getCookie("usr");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+    user = prompt("Please enter your name:", "");
+    if (user != "" && user != null) {
+      setCookie("usr", user, 365);
+    }
+  }
+}
+    function keyboard(){
+                document.getElementById("Teclat").hidden = !document.getElementById("Teclat").hidden;  
+            }
+    function ASCII(){
+                document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden;  
+            }
+    
+    
+     function guardar() {
+                const myWindow = window.open("", "_blank", "width=450, height=500, left=0, top=0, \n\
+                            location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+                 myWindow.document.open();
+                myWindow.document.write(`
+                      <html>
+                      <head>
+                          <meta charset="UTF-8">
+                          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      </head>
+                      <body>
+                          <table border="1">
+                              <tr>
+                                  <th>Usuari o correu:</th>
+                                  <th>Contrasenya:</th>
+                              </tr>
+                  `);    
+        
+                   decodedCookie = decodeURIComponent(document.cookie);
+                 cookies = decodedCookie.split(';');
+          
+                for (let i = 0; i < cookies.length; i++) {
+                    let ca = cookies[i].split("=");
+                    myWindow.document.write("<tr><td>" + ca[0] + "</td><td>" + ca[1] + "</td></tr>");
+                }        
+                 myWindow.document.write("</table></body></html>");
+                myWindow.document.close();
+                 
+            } 
+    function nodesar(){
+                usuari = document.getElementById('usr').value;
+                document.cookie = usuari + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+                window.alert("Inici de sessió no desat");
+            
+               
+            } 
+             function showpassword() {
+              var x = document.getElementById("pwd");
+              if (x.type === "pwd") {
+                x.type = "text";
+              } else {
+                x.type = "pwd";
+              }
+            } 
+    
+    /*        
+    function borrar_info(){
+                 
+            } 
+    (GUARDAR)function desar(){
+                
+            } 
+    
+    NOfunction ventana_desar(){
+               <html
+<head>
+<title> TABLAaa</title>
+</head>
+
+<body>
+
+
+
+<table>
+<tr>
+ 
+  <th>
+ <b>Usuari o correu</b>
+  </th>
+  <th>
+ <b>Contrasenya</b>
+  </th>
+ 
+ </tr>
+ 
+
+ <tr>
+  <td>
+  </td>
+  <td >
+  </td>
+ </tr>
+</table>
+
+
+</body>
+
+</html>
+
+            } 
+            } 
+            
+           */
+          
+    
+        </script>
+       <!--  <script></script>-->
+      
+        <button id="borrar" type="button" onclick="borrar_info()"> <img src="img/trash-can.png" alt=""/></button><p>  
+        <button id="teclado" type="button" onclick="keyboard();"><img src="img/keyboard.png" alt=""/></button>
+        <button id="taula" type="button" onclick="ASCII();">ASCII</button>   
+             
+         <button id="desar" type="button" onclick="guardar();">DESAR</button><p>
+        <button id="no_desar" type="button" onclick="nodesar()">NO DESAR</button><p>    
+             
+        <div id="Teclat" translate="no" >
+            <table id="Minus"><strong>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="1" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '1'; Comprovar();">1</button>
+                    <button id="2" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '2'; Comprovar();">2</button>
+                    <button id="3" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '3'; Comprovar();">3</button>
+                    <button id="4" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '4'; Comprovar();">4</button>
+                    <button id="5" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '5'; Comprovar();">5</button>
+                    <button id="6" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '6'; Comprovar();">6</button>
+                    <button id="7" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '7'; Comprovar();">7</button>
+                    <button id="8" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '8'; Comprovar();">8</button>
+                    <button id="9" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '9'; Comprovar();">9</button>
+                    <button id="0" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '0'; Comprovar();">0</button>
+                    <button id="'" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '''; Comprovar();">'</button>
+                    <button id="¡" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '¡'; Comprovar();">¡</button>
+                    <button id="circumflex" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false;
+                               document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                            style="color:red" title="Accent Circumflex">^</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="q" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'q'; Comprovar();">q</button>
+                    <button id="w" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'w'; Comprovar();">w</button>
+                    <button id="e" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'e'; Comprovar();">e</button>
+                    <button id="r" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'r'; Comprovar();">r</button>
+                    <button id="t" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 't'; Comprovar();">t</button>
+                    <button id="y" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'y'; Comprovar();">y</button>
+                    <button id="u" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'u'; Comprovar();">u</button>
+                    <button id="i" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'i'; Comprovar();">i</button>
+                    <button id="o" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'o'; Comprovar();">o</button>
+                    <button id="p" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'p'; Comprovar();">p</button>
+                    <button id="+" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '+'; Comprovar();">+</button>
+                    <button id="agut" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false;
+                               document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                             style="color:red" title="Accent Agut">´</button>
+                    <button id="retro" style="height:20px;width:20px" onclick="Retroces();;" title="BACKSPACE">←</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="a" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'a'; Comprovar();">a</button>
+                    <button id="s" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 's'; Comprovar();">s</button>
+                    <button id="d" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'd'; Comprovar();">d</button>
+                    <button id="f" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'f'; Comprovar();">f</button>
+                    <button id="g" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'g'; Comprovar();">g</button>
+                    <button id="h" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'h'; Comprovar();">h</button>
+                    <button id="j" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'j'; Comprovar();">j</button>
+                    <button id="k" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'k'; Comprovar();">k</button>
+                    <button id="l" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'l'; Comprovar();">l</button>
+                    <button id="ñ" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ñ'; Comprovar();" 
+                            style="color:blue">ñ</button>
+                    <button id="ç" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ç'; Comprovar();" 
+                            style="color:blue">ç</button>
+                    <button id="dieresi" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false;
+                               document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                             style="color:red" title="Dièresi">¨</button>
+                    <button id="intro" style="height:20px;width:20px" onclick="Comprovar();;" title="ENTER">┘</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    <button id="shift" style="height:20px;width:20px" onclick="document.getElementById('Majus').hidden = false; 
+                                document.getElementById('Minus').hidden = true;" 
+                            style="color:red" title="SHIFT">↑</button>
+                    <button id="z" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'z'; Comprovar();">z</button>
+                    <button id="x" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'x'; Comprovar();">x</button>
+                    <button id="c" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'c'; Comprovar();">c</button>
+                    <button id="v" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'v'; Comprovar();">v</button>
+                    <button id="b" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'b'; Comprovar();">b</button>
+                    <button id="n" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'n'; Comprovar();">n</button>
+                    <button id="m" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'm'; Comprovar();">m</button>
+                    <button id="," style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + ','; Comprovar();">,</button>
+                    <button id="." style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '.'; Comprovar();">.</button>
+                    <button id="-" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '-'; Comprovar();">-</button>
+                    <button id="greu" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false; 
+                                document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                            style="color:red" title="Accent Greu">`</button>
+                  </td>          
+                </tr>
+            </strong></table>
+            <table id="Majus" hidden><strong>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="!" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '!'; Comprovar();">!</button>
+                    <button id='"' style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '"'; Comprovar();">"</button>
+                    <button id="·" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '·'; Comprovar();">·</button>
+                    <button id="$" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '$'; Comprovar();">$</button>
+                    <button id="%" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '%'; Comprovar();">%</button>
+                    <button id="&" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&'; Comprovar();">&</button>
+                    <button id="/" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '/'; Comprovar();">/</button>
+                    <button id="(" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '('; Comprovar();">(</button>
+                    <button id=")" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + ')'; Comprovar();">)</button>
+                    <button id="=" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '='; Comprovar();">=</button>
+                    <button id="?" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '?'; Comprovar();">?</button>
+                    <button id="¿" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '¿'; Comprovar();">¿</button>
+                    <button id="circumflex" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false;
+                               document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                            style="color:red" title="Accent Circumflex">^</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="Q" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Q'; Comprovar();">Q</button>
+                    <button id="W" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'W'; Comprovar();">W</button>
+                    <button id="E" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'E'; Comprovar();">E</button>
+                    <button id="R" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'R'; Comprovar();">R</button>
+                    <button id="T" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'T'; Comprovar();">T</button>
+                    <button id="Y" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Y'; Comprovar();">Y</button>
+                    <button id="U" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'U'; Comprovar();">U</button>
+                    <button id="I" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'I'; Comprovar();">I</button>
+                    <button id="O" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'O'; Comprovar();">O</button>
+                    <button id="P" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'P'; Comprovar();">P</button>
+                    <button id="*" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '*'; Comprovar();">*</button>
+                    <button id="agut" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false;
+                               document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                             style="color:red" title="Accent Agut">´</button>
+                    <button id="retro" style="height:20px;width:20px" onclick="Retroces();;" title="BACKSPACE">←</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="A" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'A'; Comprovar();">A</button>
+                    <button id="S" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'S'; Comprovar();">S</button>
+                    <button id="D" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'D'; Comprovar();">D</button>
+                    <button id="F" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'F'; Comprovar();">F</button>
+                    <button id="G" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'G'; Comprovar();">G</button>
+                    <button id="H" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'H'; Comprovar();">H</button>
+                    <button id="J" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'J'; Comprovar();">J</button>
+                    <button id="K" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'K'; Comprovar();">K</button>
+                    <button id="L" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'L'; Comprovar();">L</button>
+                    <button id="Ñ" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ñ'; Comprovar();" 
+                            style="color:blue">Ñ</button>
+                    <button id="Ç" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ç'; Comprovar();" 
+                            style="color:blue">Ç</button>
+                    <button id="dieresi" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false;
+                               document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                             style="color:red" title="Dièresi">¨</button>
+                    <button id="intro" style="height:20px;width:20px" onclick="Comprovar();;" title="ENTER">┘</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    <button id="shift" style="height:20px;width:20px" onclick="document.getElementById('Majus').hidden = true; 
+                                document.getElementById('Minus').hidden = false;" 
+                             style="color:red" title="SHIFT">↑</button>
+                    <button id="Z" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Z'; Comprovar();">Z</button>
+                    <button id="X" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'X'; Comprovar();">X</button>
+                    <button id="C" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'C'; Comprovar();">C</button>
+                    <button id="V" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'V'; Comprovar();">V</button>
+                    <button id="B" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'B'; Comprovar();">B</button>
+                    <button id="N" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'N'; Comprovar();">N</button>
+                    <button id="M" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'M'; Comprovar();">M</button>
+                    <button id=";" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + ';'; Comprovar();">;</button>
+                    <button id=":" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + ':'; Comprovar();">:</button>
+                    <button id="_" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '_'; Comprovar();">_</button>
+                    <button id="greu" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = false; 
+                                document.getElementById('Minus').hidden = true; document.getElementById('Majus').hidden = true;" 
+                            style="color:red" title="Accent Greu">`</button>
+                  </td>          
+                </tr>
+            </strong></table>
+            <table id="Vocals" hidden><strong>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="â" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'â'; Comprovar();">â</button>
+                    <button id="ê" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ê'; Comprovar();">ê</button>
+                    <button id="î" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'î'; Comprovar();">î</button>
+                    <button id="ô" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ô'; Comprovar();">ô</button>
+                    <button id="û" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'û'; Comprovar();">û</button>
+                    <button id="Â" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Â'; Comprovar();">Â</button>
+                    <button id="Ê" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ê'; Comprovar();">Ê</button>
+                    <button id="Î" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Î'; Comprovar();">Î</button>
+                    <button id="Ô" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ô'; Comprovar();">Ô</button>
+                    <button id="Û" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Û'; Comprovar();">Û</button>
+                    <button id="@" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '@'; Comprovar();">@</button>
+                    <button id="ß" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ß'; Comprovar();">ß</button>
+                    <button id="circumflex" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = true;
+                                document.getElementById('Minus').hidden = true;
+                                document.getElementById('Majus').hidden = false;" 
+                            style="color:red" title="Accent Circumflex">^</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="á" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'á'; Comprovar();">á</button>
+                    <button id="é" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'é'; Comprovar();">é</button>
+                    <button id="í" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'í'; Comprovar();">í</button>
+                    <button id="ó" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ó'; Comprovar();">ó</button>
+                    <button id="ú" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ú'; Comprovar();">ú</button>
+                    <button id="Á" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Á'; Comprovar();">Á</button>
+                    <button id="É" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'É'; Comprovar();">É</button>
+                    <button id="Í" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Í'; Comprovar();">Í</button>
+                    <button id="Ó" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ó'; Comprovar();">Ó</button>
+                    <button id="Ú" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ú'; Comprovar();">Ú</button>
+                    <button id="ẞ" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ẞ'; Comprovar();">ẞ</button>
+                    <button id="agut" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = true;
+                                document.getElementById('Minus').hidden = false;
+                                document.getElementById('Majus').hidden = true;" 
+                            style="color:red" title="Accent Agut">´</button>
+                    <button id="retro" style="height:20px;width:20px" onclick="Retroces();;" title="BACKSPACE">←</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="ä" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ä'; Comprovar();">ä</button>
+                    <button id="ë" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ë'; Comprovar();">ë</button>
+                    <button id="ï" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ï'; Comprovar();">ï</button>
+                    <button id="ö" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ö'; Comprovar();">ö</button>
+                    <button id="ü" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ü'; Comprovar();">ü</button>
+                    <button id="Ä" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ä'; Comprovar();">Ä</button>
+                    <button id="Ë" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ë'; Comprovar();">Ë</button>
+                    <button id="Ï" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ï'; Comprovar();">Ï</button>
+                    <button id="Ö" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ö'; Comprovar();">Ö</button>
+                    <button id="Ü" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ü'; Comprovar();">Ü</button>
+                    <button id="ÿ" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ÿ'; Comprovar();">ÿ</button>
+                    <button id="dieresi" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = true;
+                                document.getElementById('Minus').hidden = true;
+                                document.getElementById('Majus').hidden = false;" 
+                            style="color:red" title="Dièresi">¨</button>
+                    <button id="intro" style="height:20px;width:20px" onclick="Comprovar();;" title="ENTER">┘</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    <button id="à" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'à'; Comprovar();">à</button>
+                    <button id="è" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'è'; Comprovar();">è</button>
+                    <button id="ì" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ì'; Comprovar();">ì</button>
+                    <button id="ò" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ò'; Comprovar();">ò</button>
+                    <button id="ù" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'ù'; Comprovar();">ù</button>
+                    <button id="À" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'À'; Comprovar();">À</button>
+                    <button id="È" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'È'; Comprovar();">È</button>
+                    <button id="Ì" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ì'; Comprovar();">Ì</button>
+                    <button id="Ò" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ò'; Comprovar();">Ò</button>
+                    <button id="Ù" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ù'; Comprovar();">Ù</button>
+                    <button id="Ÿ" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + 'Ÿ'; Comprovar();">Ÿ</button>
+                    <button id="greu" style="height:20px;width:20px" onclick="document.getElementById('Vocals').hidden = true;
+                                document.getElementById('Minus').hidden = true;
+                                document.getElementById('Majus').hidden = false;" 
+                            style="color:red" title="Accent Greu">`</button>
+                  </td>
+                </tr>
+            </strong></table>
+        </div>
+           <div id="taulaASCII" translate="no" hidden>
+            <table>
+                <tr>
+                    <th>\</th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                </tr>
+                <tr>
+                    <th>0</th>
+                    <td><button id="000" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#000;'; Comprovar();">&#000;</button></td>
+                    <td><button id="001" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#001;'; Comprovar();">&#001;</button></td>
+                    <td><button id="002" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#002;'; Comprovar();">&#002;</button></td>
+                    <td><button id="003" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#003;'; Comprovar();">&#003;</button></td>
+                    <td><button id="004" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#004;'; Comprovar();">&#004;</button></td>
+                    <td><button id="005" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#005;'; Comprovar();">&#005;</button></td>
+                    <td><button id="006" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#006;'; Comprovar();">&#006;</button></td>
+                    <td><button id="007" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#007;'; Comprovar();">&#007;</button></td>
+                    <td><button id="008" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#008;'; Comprovar();">&#008;</button></td>
+                    <td><button id="009" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#009;'; Comprovar();">&#009;</button></td>
+                    <td><button id="010" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#010;'; Comprovar();">&#010;</button></td>
+                    <td><button id="011" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#011;'; Comprovar();">&#011;</button></td>
+                    <td><button id="012" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#012;'; Comprovar();">&#012;</button></td>
+                    <td><button id="013" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#013;'; Comprovar();">&#013;</button></td>
+                    <td><button id="014" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#014;'; Comprovar();">&#014;</button></td>
+                    <td><button id="015" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#015;'; Comprovar();">&#015;</button></td>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td><button id="016" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#016;'; Comprovar();">&#016;</button></td>
+                    <td><button id="017" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#017;'; Comprovar();">&#017;</button></td>
+                    <td><button id="018" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#018;'; Comprovar();">&#018;</button></td>
+                    <td><button id="019" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#019;'; Comprovar();">&#019;</button></td>
+                    <td><button id="020" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#020;'; Comprovar();">&#020;</button></td>
+                    <td><button id="021" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#021;'; Comprovar();">&#021;</button></td>
+                    <td><button id="022" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#022;'; Comprovar();">&#022;</button></td>
+                    <td><button id="023" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#023;'; Comprovar();">&#023;</button></td>
+                    <td><button id="024" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#024;'; Comprovar();">&#024;</button></td>
+                    <td><button id="025" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#025;'; Comprovar();">&#025;</button></td>
+                    <td><button id="026" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#026;'; Comprovar();">&#026;</button></td>
+                    <td><button id="027" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#027;'; Comprovar();">&#027;</button></td>
+                    <td><button id="028" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#028;'; Comprovar();">&#028;</button></td>
+                    <td><button id="029" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#029;'; Comprovar();">&#029;</button></td>
+                    <td><button id="030" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#030;'; Comprovar();">&#030;</button></td>
+                    <td><button id="031" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#031;'; Comprovar();">&#031;</button></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td><button id="032" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#032;'; Comprovar();">&#032;</button></td>
+                    <td><button id="033" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#033;'; Comprovar();">&#033;</button></td>
+                    <td><button id="034" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#034;'; Comprovar();">&#034;</button></td>
+                    <td><button id="035" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#035;'; Comprovar();">&#035;</button></td>
+                    <td><button id="036" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#036;'; Comprovar();">&#036;</button></td>
+                    <td><button id="037" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#037;'; Comprovar();">&#037;</button></td>
+                    <td><button id="038" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#038;'; Comprovar();">&#038;</button></td>
+                    <td><button id="039" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#039;'; Comprovar();">&#039;</button></td>
+                    <td><button id="040" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#040;'; Comprovar();">&#040;</button></td>
+                    <td><button id="041" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#041;'; Comprovar();">&#041;</button></td>
+                    <td><button id="042" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#042;'; Comprovar();">&#042;</button></td>
+                    <td><button id="043" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#043;'; Comprovar();">&#043;</button></td>
+                    <td><button id="044" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#044;'; Comprovar();">&#044;</button></td>
+                    <td><button id="045" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#045;'; Comprovar();">&#045;</button></td>
+                    <td><button id="046" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#046;'; Comprovar();">&#046;</button></td>
+                    <td><button id="047" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#047;'; Comprovar();">&#047;</button></td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td><button id="048" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#048;'; Comprovar();">&#048;</button></td>
+                    <td><button id="049" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#049;'; Comprovar();">&#049;</button></td>
+                    <td><button id="050" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#050;'; Comprovar();">&#050;</button></td>
+                    <td><button id="051" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#051;'; Comprovar();">&#051;</button></td>
+                    <td><button id="052" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#052;'; Comprovar();">&#052;</button></td>
+                    <td><button id="053" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#053;'; Comprovar();">&#053;</button></td>
+                    <td><button id="054" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#054;'; Comprovar();">&#054;</button></td>
+                    <td><button id="055" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#055;'; Comprovar();">&#055;</button></td>
+                    <td><button id="056" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#056;'; Comprovar();">&#056;</button></td>
+                    <td><button id="057" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#057;'; Comprovar();">&#057;</button></td>
+                    <td><button id="058" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#058;'; Comprovar();">&#058;</button></td>
+                    <td><button id="059" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#059;'; Comprovar();">&#059;</button></td>
+                    <td><button id="060" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#060;'; Comprovar();">&#060;</button></td>
+                    <td><button id="061" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#061;'; Comprovar();">&#061;</button></td>
+                    <td><button id="062" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#062;'; Comprovar();">&#062;</button></td>
+                    <td><button id="063" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#063;'; Comprovar();">&#063;</button></td>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <td><button id="064" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#064;'; Comprovar();">&#064;</button></td>
+                    <td><button id="065" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#065;'; Comprovar();">&#065;</button></td>
+                    <td><button id="066" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#066;'; Comprovar();">&#066;</button></td>
+                    <td><button id="067" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#067;'; Comprovar();">&#067;</button></td>
+                    <td><button id="068" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#068;'; Comprovar();">&#068;</button></td>
+                    <td><button id="069" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#069;'; Comprovar();">&#069;</button></td>
+                    <td><button id="070" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#070;'; Comprovar();">&#070;</button></td>
+                    <td><button id="071" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#071;'; Comprovar();">&#071;</button></td>
+                    <td><button id="072" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#072;'; Comprovar();">&#072;</button></td>
+                    <td><button id="073" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#073;'; Comprovar();">&#073;</button></td>
+                    <td><button id="074" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#074;'; Comprovar();">&#074;</button></td>
+                    <td><button id="075" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#075;'; Comprovar();">&#075;</button></td>
+                    <td><button id="076" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#076;'; Comprovar();">&#076;</button></td>
+                    <td><button id="077" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#077;'; Comprovar();">&#077;</button></td>
+                    <td><button id="078" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#078;'; Comprovar();">&#078;</button></td>
+                    <td><button id="079" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#079;'; Comprovar();">&#079;</button></td>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <td><button id="080" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#080;'; Comprovar();">&#080;</button></td>
+                    <td><button id="081" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#081;'; Comprovar();">&#081;</button></td>
+                    <td><button id="082" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#082;'; Comprovar();">&#082;</button></td>
+                    <td><button id="083" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#083;'; Comprovar();">&#083;</button></td>
+                    <td><button id="084" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#084;'; Comprovar();">&#084;</button></td>
+                    <td><button id="085" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#085;'; Comprovar();">&#085;</button></td>
+                    <td><button id="086" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#086;'; Comprovar();">&#086;</button></td>
+                    <td><button id="087" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#087;'; Comprovar();">&#087;</button></td>
+                    <td><button id="088" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#088;'; Comprovar();">&#088;</button></td>
+                    <td><button id="089" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#089;'; Comprovar();">&#089;</button></td>
+                    <td><button id="090" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#090;'; Comprovar();">&#090;</button></td>
+                    <td><button id="091" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#091;'; Comprovar();">&#091;</button></td>
+                    <td><button id="092" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#092;'; Comprovar();">&#092;</button></td>
+                    <td><button id="093" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#093;'; Comprovar();">&#093;</button></td>
+                    <td><button id="094" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#094;'; Comprovar();">&#094;</button></td>
+                    <td><button id="095" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#095;'; Comprovar();">&#095;</button></td>
+                </tr>
+                <tr>
+                    <th>6</th>
+                    <td><button id="096" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#096;'; Comprovar();">&#096;</button></td>
+                    <td><button id="097" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#097;'; Comprovar();">&#097;</button></td>
+                    <td><button id="098" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#098;'; Comprovar();">&#098;</button></td>
+                    <td><button id="099" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#099;'; Comprovar();">&#099;</button></td>
+                    <td><button id="100" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#100;'; Comprovar();">&#100;</button></td>
+                    <td><button id="101" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#101;'; Comprovar();">&#101;</button></td>
+                    <td><button id="102" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#102;'; Comprovar();">&#102;</button></td>
+                    <td><button id="103" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#103;'; Comprovar();">&#103;</button></td>
+                    <td><button id="104" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#104;'; Comprovar();">&#104;</button></td>
+                    <td><button id="105" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#105;'; Comprovar();">&#105;</button></td>
+                    <td><button id="106" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#106;'; Comprovar();">&#106;</button></td>
+                    <td><button id="107" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#107;'; Comprovar();">&#107;</button></td>
+                    <td><button id="108" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#108;'; Comprovar();">&#108;</button></td>
+                    <td><button id="109" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#109;'; Comprovar();">&#109;</button></td>
+                    <td><button id="110" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#110;'; Comprovar();">&#110;</button></td>
+                    <td><button id="111" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#111;'; Comprovar();">&#111;</button></td>
+                </tr>
+                <tr>
+                    <th>7</th>
+                    <td><button id="112" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#112;'; Comprovar();">&#112;</button></td>
+                    <td><button id="113" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#113;'; Comprovar();">&#113;</button></td>
+                    <td><button id="114" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#114;'; Comprovar();">&#114;</button></td>
+                    <td><button id="115" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#115;'; Comprovar();">&#115;</button></td>
+                    <td><button id="116" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#116;'; Comprovar();">&#116;</button></td>
+                    <td><button id="117" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#117;'; Comprovar();">&#117;</button></td>
+                    <td><button id="118" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#118;'; Comprovar();">&#118;</button></td>
+                    <td><button id="119" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#119;'; Comprovar();">&#119;</button></td>
+                    <td><button id="120" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#120;'; Comprovar();">&#120;</button></td>
+                    <td><button id="121" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#121;'; Comprovar();">&#121;</button></td>
+                    <td><button id="122" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#122;'; Comprovar();">&#122;</button></td>
+                    <td><button id="123" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#123;'; Comprovar();">&#123;</button></td>
+                    <td><button id="124" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#124;'; Comprovar();">&#124;</button></td>
+                    <td><button id="125" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#125;'; Comprovar();">&#125;</button></td>
+                    <td><button id="126" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#126;'; Comprovar();">&#126;</button></td>
+                    <td><button id="127" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#127;'; Comprovar();">&#127;</button></td>
+                </tr>
+                <tr>
+                    <th>8</th>
+                    <td><button id="128" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#128;'; Comprovar();">&#128;</button></td>
+                    <td><button id="129" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#129;'; Comprovar();">&#129;</button></td>
+                    <td><button id="130" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#130;'; Comprovar();">&#130;</button></td>
+                    <td><button id="131" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#131;'; Comprovar();">&#131;</button></td>
+                    <td><button id="132" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#132;'; Comprovar();">&#132;</button></td>
+                    <td><button id="133" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#133;'; Comprovar();">&#133;</button></td>
+                    <td><button id="134" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#134;'; Comprovar();">&#134;</button></td>
+                    <td><button id="135" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#135;'; Comprovar();">&#135;</button></td>
+                    <td><button id="136" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#136;'; Comprovar();">&#136;</button></td>
+                    <td><button id="137" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#137;'; Comprovar();">&#137;</button></td>
+                    <td><button id="138" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#138;'; Comprovar();">&#138;</button></td>
+                    <td><button id="139" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#139;'; Comprovar();">&#139;</button></td>
+                    <td><button id="140" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#140;'; Comprovar();">&#140;</button></td>
+                    <td><button id="141" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#141;'; Comprovar();">&#141;</button></td>
+                    <td><button id="142" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#142;'; Comprovar();">&#142;</button></td>
+                    <td><button id="143" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#143;'; Comprovar();">&#143;</button></td>
+                </tr>
+                <tr>
+                    <th>9</th>
+                    <td><button id="144" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#144;'; Comprovar();">&#144;</button></td>
+                    <td><button id="145" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#145;'; Comprovar();">&#145;</button></td>
+                    <td><button id="146" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#146;'; Comprovar();">&#146;</button></td>
+                    <td><button id="147" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#147;'; Comprovar();">&#147;</button></td>
+                    <td><button id="148" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#148;'; Comprovar();">&#148;</button></td>
+                    <td><button id="149" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#149;'; Comprovar();">&#149;</button></td>
+                    <td><button id="150" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#150;'; Comprovar();">&#150;</button></td>
+                    <td><button id="151" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#151;'; Comprovar();">&#151;</button></td>
+                    <td><button id="152" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#152;'; Comprovar();">&#152;</button></td>
+                    <td><button id="153" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#153;'; Comprovar();">&#153;</button></td>
+                    <td><button id="154" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#154;'; Comprovar();">&#154;</button></td>
+                    <td><button id="155" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#155;'; Comprovar();">&#155;</button></td>
+                    <td><button id="156" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#156;'; Comprovar();">&#156;</button></td>
+                    <td><button id="157" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#157;'; Comprovar();">&#157;</button></td>
+                    <td><button id="158" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#158;'; Comprovar();">&#158;</button></td>
+                    <td><button id="159" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#159;'; Comprovar();">&#159;</button></td>
+                </tr>
+                <tr>
+                    <th>A</th>
+                    <td><button id="160" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#160;'; Comprovar();">&#160;</button></td>
+                    <td><button id="161" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#161;'; Comprovar();">&#161;</button></td>
+                    <td><button id="162" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#162;'; Comprovar();">&#162;</button></td>
+                    <td><button id="163" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#163;'; Comprovar();">&#163;</button></td>
+                    <td><button id="164" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#164;'; Comprovar();">&#164;</button></td>
+                    <td><button id="165" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#165;'; Comprovar();">&#165;</button></td>
+                    <td><button id="166" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#166;'; Comprovar();">&#166;</button></td>
+                    <td><button id="167" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#167;'; Comprovar();">&#167;</button></td>
+                    <td><button id="168" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#168;'; Comprovar();">&#168;</button></td>
+                    <td><button id="169" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#169;'; Comprovar();">&#169;</button></td>
+                    <td><button id="170" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#170;'; Comprovar();">&#170;</button></td>
+                    <td><button id="171" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#171;'; Comprovar();">&#171;</button></td>
+                    <td><button id="172" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#172;'; Comprovar();">&#172;</button></td>
+                    <td><button id="173" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#173;'; Comprovar();">&#173;</button></td>
+                    <td><button id="174" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#174;'; Comprovar();">&#174;</button></td>
+                    <td><button id="175" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#175;'; Comprovar();">&#175;</button></td>
+                </tr>
+                <tr>
+                    <th>B</th>
+                    <td><button id="176" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#176;'; Comprovar();">&#176;</button></td>
+                    <td><button id="177" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#177;'; Comprovar();">&#177;</button></td>
+                    <td><button id="178" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#178;'; Comprovar();">&#178;</button></td>
+                    <td><button id="179" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#179;'; Comprovar();">&#179;</button></td>
+                    <td><button id="180" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#180;'; Comprovar();">&#180;</button></td>
+                    <td><button id="181" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#181;'; Comprovar();">&#181;</button></td>
+                    <td><button id="182" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#182;'; Comprovar();">&#182;</button></td>
+                    <td><button id="183" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#183;'; Comprovar();">&#183;</button></td>
+                    <td><button id="184" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#184;'; Comprovar();">&#184;</button></td>
+                    <td><button id="185" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#185;'; Comprovar();">&#185;</button></td>
+                    <td><button id="186" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#186;'; Comprovar();">&#186;</button></td>
+                    <td><button id="187" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#187;'; Comprovar();">&#187;</button></td>
+                    <td><button id="188" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#188;'; Comprovar();">&#188;</button></td>
+                    <td><button id="189" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#189;'; Comprovar();">&#189;</button></td>
+                    <td><button id="190" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#190;'; Comprovar();">&#190;</button></td>
+                    <td><button id="191" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#191;'; Comprovar();">&#191;</button></td>
+                </tr>
+                <tr>
+                    <th>C</th>
+                    <td><button id="192" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#192;'; Comprovar();">&#192;</button></td>
+                    <td><button id="193" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#193;'; Comprovar();">&#193;</button></td>
+                    <td><button id="194" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#194;'; Comprovar();">&#194;</button></td>
+                    <td><button id="195" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#195;'; Comprovar();">&#195;</button></td>
+                    <td><button id="196" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#196;'; Comprovar();">&#196;</button></td>
+                    <td><button id="197" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#197;'; Comprovar();">&#197;</button></td>
+                    <td><button id="198" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#198;'; Comprovar();">&#198;</button></td>
+                    <td><button id="199" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#199;'; Comprovar();">&#199;</button></td>
+                    <td><button id="200" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#200;'; Comprovar();">&#200;</button></td>
+                    <td><button id="201" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#201;'; Comprovar();">&#201;</button></td>
+                    <td><button id="202" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#202;'; Comprovar();">&#202;</button></td>
+                    <td><button id="203" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#203;'; Comprovar();">&#203;</button></td>
+                    <td><button id="204" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#204;'; Comprovar();">&#204;</button></td>
+                    <td><button id="205" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#205;'; Comprovar();">&#205;</button></td>
+                    <td><button id="206" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#206;'; Comprovar();">&#206;</button></td>
+                    <td><button id="207" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#207;'; Comprovar();">&#208;</button></td>
+                </tr>
+                <tr>
+                    <th>D</th>
+                    <td><button id="208" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#208;'; Comprovar();">&#208;</button></td>
+                    <td><button id="209" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#209;'; Comprovar();">&#209;</button></td>
+                    <td><button id="210" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#210;'; Comprovar();">&#210;</button></td>
+                    <td><button id="211" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#211;'; Comprovar();">&#211;</button></td>
+                    <td><button id="212" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#212;'; Comprovar();">&#212;</button></td>
+                    <td><button id="213" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#213;'; Comprovar();">&#213;</button></td>
+                    <td><button id="214" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#214;'; Comprovar();">&#214;</button></td>
+                    <td><button id="215" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#215;'; Comprovar();">&#215;</button></td>
+                    <td><button id="216" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#216;'; Comprovar();">&#216;</button></td>
+                    <td><button id="217" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#217;'; Comprovar();">&#217;</button></td>
+                    <td><button id="218" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#218;'; Comprovar();">&#218;</button></td>
+                    <td><button id="219" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#219;'; Comprovar();">&#219;</button></td>
+                    <td><button id="220" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#220;'; Comprovar();">&#220;</button></td>
+                    <td><button id="221" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#221;'; Comprovar();">&#221;</button></td>
+                    <td><button id="222" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#222;'; Comprovar();">&#222;</button></td>
+                    <td><button id="223" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#223;'; Comprovar();">&#223;</button></td>
+                </tr>
+                <tr>
+                    <th>E</th>
+                    <td><button id="224" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#224;'; Comprovar();">&#224;</button></td>
+                    <td><button id="225" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#225;'; Comprovar();">&#225;</button></td>
+                    <td><button id="226" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#226;'; Comprovar();">&#226;</button></td>
+                    <td><button id="227" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#227;'; Comprovar();">&#227;</button></td>
+                    <td><button id="228" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#228;'; Comprovar();">&#228;</button></td>
+                    <td><button id="229" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#229;'; Comprovar();">&#229;</button></td>
+                    <td><button id="230" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#230;'; Comprovar();">&#230;</button></td>
+                    <td><button id="231" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#231;'; Comprovar();">&#231;</button></td>
+                    <td><button id="232" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#232;'; Comprovar();">&#232;</button></td>
+                    <td><button id="233" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#233;'; Comprovar();">&#233;</button></td>
+                    <td><button id="234" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#234;'; Comprovar();">&#234;</button></td>
+                    <td><button id="235" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#235;'; Comprovar();">&#235;</button></td>
+                    <td><button id="236" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#236;'; Comprovar();">&#236;</button></td>
+                    <td><button id="237" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#237;'; Comprovar();">&#237;</button></td>
+                    <td><button id="238" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#238;'; Comprovar();">&#238;</button></td>
+                    <td><button id="239" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#239;'; Comprovar();">&#239;</button></td>
+                </tr>
+                <tr>
+                    <th>F</th>
+                    <td><button id="240" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#240;'; Comprovar();">&#240;</button></td>
+                    <td><button id="241" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#241;'; Comprovar();">&#241;</button></td>
+                    <td><button id="242" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#242;'; Comprovar();">&#242;</button></td>
+                    <td><button id="243" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#243;'; Comprovar();">&#243;</button></td>
+                    <td><button id="244" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#244;'; Comprovar();">&#244;</button></td>
+                    <td><button id="245" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#245;'; Comprovar();">&#245;</button></td>
+                    <td><button id="246" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#246;'; Comprovar();">&#246;</button></td>
+                    <td><button id="247" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#247;'; Comprovar();">&#247;</button></td>
+                    <td><button id="248" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#248;'; Comprovar();">&#248;</button></td>
+                    <td><button id="249" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#249;'; Comprovar();">&#249;</button></td>
+                    <td><button id="250" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#250;'; Comprovar();">&#250;</button></td>
+                    <td><button id="251" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#251;'; Comprovar();">&#251;</button></td>
+                    <td><button id="252" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#252;'; Comprovar();">&#252;</button></td>
+                    <td><button id="253" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#253;'; Comprovar();">&#253;</button></td>
+                    <td><button id="254" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#254;'; Comprovar();">&#254;</button></td>
+                    <td><button id="255" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#255;'; Comprovar();">&#255;</button></td>
+                </tr>
+            </table>
+            <br><strong>###;Char</strong><br>
+            <table>
+                <tr>
+                    <td>000;</td><td><button id="000" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#000;'; Comprovar();">&#000;</button></td>
+                    <td>001;</td><td><button id="001" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#001;'; Comprovar();">&#001;</button></td>
+                    <td>002;</td><td><button id="002" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#002;'; Comprovar();">&#002;</button></td>
+                    <td>003;</td><td><button id="003" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#003;'; Comprovar();">&#003;</button></td>
+                    <td>004;</td><td><button id="004" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#004;'; Comprovar();">&#004;</button></td>
+                    <td>005;</td><td><button id="005" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#005;'; Comprovar();">&#005;</button></td>
+                    <td>006;</td><td><button id="006" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#006;'; Comprovar();">&#006;</button></td>
+                    <td>007;</td><td><button id="007" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#007;'; Comprovar();">&#007;</button></td>
+                    <td>008;</td><td><button id="008" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#008;'; Comprovar();">&#008;</button></td>
+                    <td>009;</td><td><button id="009" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#009;'; Comprovar();">&#009;</button></td>
+                    <td>010;</td><td><button id="010" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#010;'; Comprovar();">&#010;</button></td>
+                    <td>011;</td><td><button id="011" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#011;'; Comprovar();">&#011;</button></td>
+                    <td>012;</td><td><button id="012" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#012;'; Comprovar();">&#012;</button></td>
+                    <td>013;</td><td><button id="013" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#013;'; Comprovar();">&#013;</button></td>
+                    <td>014;</td><td><button id="014" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#014;'; Comprovar();">&#014;</button></td>
+                    <td>015;</td><td><button id="015" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#015;'; Comprovar();">&#015;</button></td>
+                </tr>
+                <tr>
+                    <td>016;</td><td><button id="016" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#016;'; Comprovar();">&#016;</button></td>
+                    <td>017;</td><td><button id="017" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#017;'; Comprovar();">&#017;</button></td>
+                    <td>018;</td><td><button id="018" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#018;'; Comprovar();">&#018;</button></td>
+                    <td>019;</td><td><button id="019" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#019;'; Comprovar();">&#019;</button></td>
+                    <td>020;</td><td><button id="020" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#020;'; Comprovar();">&#020;</button></td>
+                    <td>021;</td><td><button id="021" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#021;'; Comprovar();">&#021;</button></td>
+                    <td>022;</td><td><button id="022" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#022;'; Comprovar();">&#022;</button></td>
+                    <td>023;</td><td><button id="023" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#023;'; Comprovar();">&#023;</button></td>
+                    <td>024;</td><td><button id="024" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#024;'; Comprovar();">&#024;</button></td>
+                    <td>025;</td><td><button id="025" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#025;'; Comprovar();">&#025;</button></td>
+                    <td>026;</td><td><button id="026" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#026;'; Comprovar();">&#026;</button></td>
+                    <td>027;</td><td><button id="027" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#027;'; Comprovar();">&#027;</button></td>
+                    <td>028;</td><td><button id="028" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#028;'; Comprovar();">&#028;</button></td>
+                    <td>029;</td><td><button id="029" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#029;'; Comprovar();">&#029;</button></td>
+                    <td>030;</td><td><button id="030" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#030;'; Comprovar();">&#030;</button></td>
+                    <td>031;</td><td><button id="031" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#031;'; Comprovar();">&#031;</button></td>
+                </tr>
+                <tr>
+                    <td>032;</td><td><button id="032" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#032;'; Comprovar();">&#032;</button></td>
+                    <td>033;</td><td><button id="033" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#033;'; Comprovar();">&#033;</button></td>
+                    <td>034;</td><td><button id="034" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#034;'; Comprovar();">&#034;</button></td>
+                    <td>035;</td><td><button id="035" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#035;'; Comprovar();">&#035;</button></td>
+                    <td>036;</td><td><button id="036" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#036;'; Comprovar();">&#036;</button></td>
+                    <td>037;</td><td><button id="037" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#037;'; Comprovar();">&#037;</button></td>
+                    <td>038;</td><td><button id="038" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#038;'; Comprovar();">&#038;</button></td>
+                    <td>039;</td><td><button id="039" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#039;'; Comprovar();">&#039;</button></td>
+                    <td>040;</td><td><button id="040" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#040;'; Comprovar();">&#040;</button></td>
+                    <td>041;</td><td><button id="041" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#041;'; Comprovar();">&#041;</button></td>
+                    <td>042;</td><td><button id="042" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#042;'; Comprovar();">&#042;</button></td>
+                    <td>043;</td><td><button id="043" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#043;'; Comprovar();">&#043;</button></td>
+                    <td>044;</td><td><button id="044" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#044;'; Comprovar();">&#044;</button></td>
+                    <td>045;</td><td><button id="045" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#045;'; Comprovar();">&#045;</button></td>
+                    <td>046;</td><td><button id="046" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#046;'; Comprovar();">&#046;</button></td>
+                    <td>047;</td><td><button id="047" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#047;'; Comprovar();">&#047;</button></td>
+                </tr>
+                <tr>
+                    <td>048;</td><td><button id="048" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#048;'; Comprovar();">&#048;</button></td>
+                    <td>049;</td><td><button id="049" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#049;'; Comprovar();">&#049;</button></td>
+                    <td>050;</td><td><button id="050" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#050;'; Comprovar();">&#050;</button></td>
+                    <td>051;</td><td><button id="051" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#051;'; Comprovar();">&#051;</button></td>
+                    <td>052;</td><td><button id="052" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#052;'; Comprovar();">&#052;</button></td>
+                    <td>053;</td><td><button id="053" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#053;'; Comprovar();">&#053;</button></td>
+                    <td>054;</td><td><button id="054" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#054;'; Comprovar();">&#054;</button></td>
+                    <td>055;</td><td><button id="055" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#055;'; Comprovar();">&#055;</button></td>
+                    <td>056;</td><td><button id="056" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#056;'; Comprovar();">&#056;</button></td>
+                    <td>057;</td><td><button id="057" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#057;'; Comprovar();">&#057;</button></td>
+                    <td>058;</td><td><button id="058" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#058;'; Comprovar();">&#058;</button></td>
+                    <td>059;</td><td><button id="059" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#059;'; Comprovar();">&#059;</button></td>
+                    <td>060;</td><td><button id="060" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#060;'; Comprovar();">&#060;</button></td>
+                    <td>061;</td><td><button id="061" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#061;'; Comprovar();">&#061;</button></td>
+                    <td>062;</td><td><button id="062" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#062;'; Comprovar();">&#062;</button></td>
+                    <td>063;</td><td><button id="063" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#063;'; Comprovar();">&#063;</button></td>
+                </tr>
+                <tr>
+                    <td>064;</td><td><button id="064" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#064;'; Comprovar();">&#064;</button></td>
+                    <td>065;</td><td><button id="065" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#065;'; Comprovar();">&#065;</button></td>
+                    <td>066;</td><td><button id="066" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#066;'; Comprovar();">&#066;</button></td>
+                    <td>067;</td><td><button id="067" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#067;'; Comprovar();">&#067;</button></td>
+                    <td>068;</td><td><button id="068" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#068;'; Comprovar();">&#068;</button></td>
+                    <td>069;</td><td><button id="069" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#069;'; Comprovar();">&#069;</button></td>
+                    <td>070;</td><td><button id="070" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#070;'; Comprovar();">&#070;</button></td>
+                    <td>071;</td><td><button id="071" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#071;'; Comprovar();">&#071;</button></td>
+                    <td>072;</td><td><button id="072" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#072;'; Comprovar();">&#072;</button></td>
+                    <td>073;</td><td><button id="073" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#073;'; Comprovar();">&#073;</button></td>
+                    <td>074;</td><td><button id="074" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#074;'; Comprovar();">&#074;</button></td>
+                    <td>075;</td><td><button id="075" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#075;'; Comprovar();">&#075;</button></td>
+                    <td>076;</td><td><button id="076" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#076;'; Comprovar();">&#076;</button></td>
+                    <td>077;</td><td><button id="077" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#077;'; Comprovar();">&#077;</button></td>
+                    <td>078;</td><td><button id="078" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#078;'; Comprovar();">&#078;</button></td>
+                    <td>079;</td><td><button id="079" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#079;'; Comprovar();">&#079;</button></td>
+                </tr>
+                <tr>
+                    <td>080;</td><td><button id="080" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#080;'; Comprovar();">&#080;</button></td>
+                    <td>081;</td><td><button id="081" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#081;'; Comprovar();">&#081;</button></td>
+                    <td>082;</td><td><button id="082" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#082;'; Comprovar();">&#082;</button></td>
+                    <td>083;</td><td><button id="083" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#083;'; Comprovar();">&#083;</button></td>
+                    <td>084;</td><td><button id="084" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#084;'; Comprovar();">&#084;</button></td>
+                    <td>085;</td><td><button id="085" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#085;'; Comprovar();">&#085;</button></td>
+                    <td>086;</td><td><button id="086" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#086;'; Comprovar();">&#086;</button></td>
+                    <td>087;</td><td><button id="087" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#087;'; Comprovar();">&#087;</button></td>
+                    <td>088;</td><td><button id="088" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#088;'; Comprovar();">&#088;</button></td>
+                    <td>089;</td><td><button id="089" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#089;'; Comprovar();">&#089;</button></td>
+                    <td>090;</td><td><button id="090" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#090;'; Comprovar();">&#090;</button></td>
+                    <td>091;</td><td><button id="091" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#091;'; Comprovar();">&#091;</button></td>
+                    <td>092;</td><td><button id="092" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#092;'; Comprovar();">&#092;</button></td>
+                    <td>093;</td><td><button id="093" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#093;'; Comprovar();">&#093;</button></td>
+                    <td>094;</td><td><button id="094" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#094;'; Comprovar();">&#094;</button></td>
+                    <td>095;</td><td><button id="095" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#095;'; Comprovar();">&#095;</button></td>
+                </tr>
+                <tr>
+                    <td>096;</td><td><button id="096" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#096;'; Comprovar();">&#096;</button></td>
+                    <td>097;</td><td><button id="097" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#097;'; Comprovar();">&#097;</button></td>
+                    <td>098;</td><td><button id="098" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#098;'; Comprovar();">&#098;</button></td>
+                    <td>099;</td><td><button id="099" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#099;'; Comprovar();">&#099;</button></td>
+                    <td>100;</td><td><button id="100" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#100;'; Comprovar();">&#100;</button></td>
+                    <td>101;</td><td><button id="101" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#101;'; Comprovar();">&#101;</button></td>
+                    <td>102;</td><td><button id="102" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#102;'; Comprovar();">&#102;</button></td>
+                    <td>103;</td><td><button id="103" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#103;'; Comprovar();">&#103;</button></td>
+                    <td>104;</td><td><button id="104" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#104;'; Comprovar();">&#104;</button></td>
+                    <td>105;</td><td><button id="105" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#105;'; Comprovar();">&#105;</button></td>
+                    <td>106;</td><td><button id="106" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#106;'; Comprovar();">&#106;</button></td>
+                    <td>107;</td><td><button id="107" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#107;'; Comprovar();">&#107;</button></td>
+                    <td>109;</td><td><button id="108" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#108;'; Comprovar();">&#108;</button></td>
+                    <td>109;</td><td><button id="109" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#109;'; Comprovar();">&#109;</button></td>
+                    <td>110;</td><td><button id="110" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#110;'; Comprovar();">&#110;</button></td>
+                    <td>111;</td><td><button id="111" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#111;'; Comprovar();">&#111;</button></td>
+                </tr>
+                <tr>
+                    <td>112;</td><td><button id="112" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#112;'; Comprovar();">&#112;</button></td>
+                    <td>113;</td><td><button id="113" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#113;'; Comprovar();">&#113;</button></td>
+                    <td>114;</td><td><button id="114" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#114;'; Comprovar();">&#114;</button></td>
+                    <td>115;</td><td><button id="115" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#115;'; Comprovar();">&#115;</button></td>
+                    <td>116;</td><td><button id="116" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#116;'; Comprovar();">&#116;</button></td>
+                    <td>117;</td><td><button id="117" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#117;'; Comprovar();">&#117;</button></td>
+                    <td>118;</td><td><button id="118" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#118;'; Comprovar();">&#118;</button></td>
+                    <td>119;</td><td><button id="119" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#119;'; Comprovar();">&#119;</button></td>
+                    <td>120;</td><td><button id="120" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#120;'; Comprovar();">&#120;</button></td>
+                    <td>121;</td><td><button id="121" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#121;'; Comprovar();">&#121;</button></td>
+                    <td>122;</td><td><button id="122" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#122;'; Comprovar();">&#122;</button></td>
+                    <td>123;</td><td><button id="123" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#123;'; Comprovar();">&#123;</button></td>
+                    <td>124;</td><td><button id="124" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#124;'; Comprovar();">&#124;</button></td>
+                    <td>125;</td><td><button id="125" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#125;'; Comprovar();">&#125;</button></td>
+                    <td>126;</td><td><button id="126" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#126;'; Comprovar();">&#126;</button></td>
+                    <td>127;</td><td><button id="127" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#127;'; Comprovar();">&#127;</button></td>
+                </tr>
+                <tr>
+                    <td>128;</td><td><button id="128" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#128;'; Comprovar();">&#128;</button></td>
+                    <td>129;</td><td><button id="129" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#129;'; Comprovar();">&#129;</button></td>
+                    <td>130;</td><td><button id="130" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#130;'; Comprovar();">&#130;</button></td>
+                    <td>131;</td><td><button id="131" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#131;'; Comprovar();">&#131;</button></td>
+                    <td>132;</td><td><button id="132" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#132;'; Comprovar();">&#132;</button></td>
+                    <td>133;</td><td><button id="133" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#133;'; Comprovar();">&#133;</button></td>
+                    <td>134;</td><td><button id="134" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#134;'; Comprovar();">&#134;</button></td>
+                    <td>135;</td><td><button id="135" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#135;'; Comprovar();">&#135;</button></td>
+                    <td>136;</td><td><button id="136" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#136;'; Comprovar();">&#136;</button></td>
+                    <td>137;</td><td><button id="137" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#137;'; Comprovar();">&#137;</button></td>
+                    <td>138;</td><td><button id="138" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#138;'; Comprovar();">&#138;</button></td>
+                    <td>139;</td><td><button id="139" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#139;'; Comprovar();">&#139;</button></td>
+                    <td>140;</td><td><button id="140" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#140;'; Comprovar();">&#140;</button></td>
+                    <td>141;</td><td><button id="141" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#141;'; Comprovar();">&#141;</button></td>
+                    <td>142;</td><td><button id="142" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#142;'; Comprovar();">&#142;</button></td>
+                    <td>143;</td><td><button id="143" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#143;'; Comprovar();">&#143;</button></td>
+                </tr>
+                <tr>
+                    <td>144;</td><td><button id="144" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#144;'; Comprovar();">&#144;</button></td>
+                    <td>145;</td><td><button id="145" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#145;'; Comprovar();">&#145;</button></td>
+                    <td>146;</td><td><button id="146" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#146;'; Comprovar();">&#146;</button></td>
+                    <td>147;</td><td><button id="147" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#147;'; Comprovar();">&#147;</button></td>
+                    <td>148;</td><td><button id="148" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#148;'; Comprovar();">&#148;</button></td>
+                    <td>149;</td><td><button id="149" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#149;'; Comprovar();">&#149;</button></td>
+                    <td>150;</td><td><button id="150" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#150;'; Comprovar();">&#150;</button></td>
+                    <td>151;</td><td><button id="151" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#151;'; Comprovar();">&#151;</button></td>
+                    <td>152;</td><td><button id="152" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#152;'; Comprovar();">&#152;</button></td>
+                    <td>153;</td><td><button id="153" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#153;'; Comprovar();">&#153;</button></td>
+                    <td>154;</td><td><button id="154" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#154;'; Comprovar();">&#154;</button></td>
+                    <td>155;</td><td><button id="155" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#155;'; Comprovar();">&#155;</button></td>
+                    <td>156;</td><td><button id="156" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#156;'; Comprovar();">&#156;</button></td>
+                    <td>157;</td><td><button id="157" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#157;'; Comprovar();">&#157;</button></td>
+                    <td>158;</td><td><button id="158" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#158;'; Comprovar();">&#158;</button></td>
+                    <td>159;</td><td><button id="159" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#159;'; Comprovar();">&#159;</button></td>
+                </tr>
+                <tr>
+                    <td>160;</td><td><button id="160" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#160;'; Comprovar();">&#160;</button></td>
+                    <td>161;</td><td><button id="161" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#161;'; Comprovar();">&#161;</button></td>
+                    <td>162;</td><td><button id="162" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#162;'; Comprovar();">&#162;</button></td>
+                    <td>163;</td><td><button id="163" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#163;'; Comprovar();">&#163;</button></td>
+                    <td>164;</td><td><button id="164" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#164;'; Comprovar();">&#164;</button></td>
+                    <td>165;</td><td><button id="165" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#165;'; Comprovar();">&#165;</button></td>
+                    <td>166;</td><td><button id="166" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#166;'; Comprovar();">&#166;</button></td>
+                    <td>167;</td><td><button id="167" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#167;'; Comprovar();">&#167;</button></td>
+                    <td>168;</td><td><button id="168" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#168;'; Comprovar();">&#168;</button></td>
+                    <td>169;</td><td><button id="169" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#169;'; Comprovar();">&#169;</button></td>
+                    <td>170;</td><td><button id="170" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#170;'; Comprovar();">&#170;</button></td>
+                    <td>171;</td><td><button id="171" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#171;'; Comprovar();">&#171;</button></td>
+                    <td>172;</td><td><button id="172" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#172;'; Comprovar();">&#172;</button></td>
+                    <td>173;</td><td><button id="173" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#173;'; Comprovar();">&#173;</button></td>
+                    <td>174;</td><td><button id="174" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#174;'; Comprovar();">&#174;</button></td>
+                    <td>175;</td><td><button id="175" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#175;'; Comprovar();">&#175;</button></td>
+                </tr>
+                <tr>
+                    <td>176;</td><td><button id="176" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#176;'; Comprovar();">&#176;</button></td>
+                    <td>177;</td><td><button id="177" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#177;'; Comprovar();">&#177;</button></td>
+                    <td>178;</td><td><button id="178" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#178;'; Comprovar();">&#178;</button></td>
+                    <td>179;</td><td><button id="179" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#179;'; Comprovar();">&#179;</button></td>
+                    <td>180;</td><td><button id="180" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#180;'; Comprovar();">&#180;</button></td>
+                    <td>181;</td><td><button id="181" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#181;'; Comprovar();">&#181;</button></td>
+                    <td>182;</td><td><button id="182" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#182;'; Comprovar();">&#182;</button></td>
+                    <td>183;</td><td><button id="183" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#183;'; Comprovar();">&#183;</button></td>
+                    <td>184;</td><td><button id="184" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#184;'; Comprovar();">&#184;</button></td>
+                    <td>185;</td><td><button id="185" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#185;'; Comprovar();">&#185;</button></td>
+                    <td>186;</td><td><button id="186" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#186;'; Comprovar();">&#186;</button></td>
+                    <td>187;</td><td><button id="187" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#187;'; Comprovar();">&#187;</button></td>
+                    <td>188;</td><td><button id="188" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#188;'; Comprovar();">&#188;</button></td>
+                    <td>189;</td><td><button id="189" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#189;'; Comprovar();">&#189;</button></td>
+                    <td>190;</td><td><button id="190" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#190;'; Comprovar();">&#190;</button></td>
+                    <td>191;</td><td><button id="191" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#191;'; Comprovar();">&#191;</button></td>
+                </tr><tr>
+                    <td>192;</td><td><button id="192" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#192;'; Comprovar();">&#192;</button></td>
+                    <td>193;</td><td><button id="193" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#193;'; Comprovar();">&#193;</button></td>
+                    <td>194;</td><td><button id="194" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#194;'; Comprovar();">&#194;</button></td>
+                    <td>195;</td><td><button id="195" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#195;'; Comprovar();">&#195;</button></td>
+                    <td>196;</td><td><button id="196" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#196;'; Comprovar();">&#196;</button></td>
+                    <td>197;</td><td><button id="197" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#197;'; Comprovar();">&#197;</button></td>
+                    <td>198;</td><td><button id="198" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#198;'; Comprovar();">&#198;</button></td>
+                    <td>199;</td><td><button id="199" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#199;'; Comprovar();">&#199;</button></td>
+                    <td>200;</td><td><button id="200" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#200;'; Comprovar();">&#200;</button></td>
+                    <td>201;</td><td><button id="201" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#201;'; Comprovar();">&#201;</button></td>
+                    <td>202;</td><td><button id="202" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#202;'; Comprovar();">&#202;</button></td>
+                    <td>203;</td><td><button id="203" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#203;'; Comprovar();">&#203;</button></td>
+                    <td>204;</td><td><button id="204" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#204;'; Comprovar();">&#204;</button></td>
+                    <td>205;</td><td><button id="205" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#205;'; Comprovar();">&#205;</button></td>
+                    <td>206;</td><td><button id="206" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#206;'; Comprovar();">&#206;</button></td>
+                    <td>207;</td><td><button id="207" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#207;'; Comprovar();">&#207;</button></td>
+                </tr><tr>
+                    <td>208;</td><td><button id="208" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#208;'; Comprovar();">&#208;</button></td>
+                    <td>209;</td><td><button id="209" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#209;'; Comprovar();">&#209;</button></td>
+                    <td>210;</td><td><button id="210" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#210;'; Comprovar();">&#210;</button></td>
+                    <td>211;</td><td><button id="211" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#211;'; Comprovar();">&#211;</button></td>
+                    <td>212;</td><td><button id="212" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#212;'; Comprovar();">&#212;</button></td>
+                    <td>213;</td><td><button id="213" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#213;'; Comprovar();">&#213;</button></td>
+                    <td>214;</td><td><button id="214" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#214;'; Comprovar();">&#214;</button></td>
+                    <td>215;</td><td><button id="215" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#215;'; Comprovar();">&#215;</button></td>
+                    <td>216;</td><td><button id="216" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#216;'; Comprovar();">&#216;</button></td>
+                    <td>217;</td><td><button id="217" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#217;'; Comprovar();">&#217;</button></td>
+                    <td>218;</td><td><button id="218" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#218;'; Comprovar();">&#218;</button></td>
+                    <td>219;</td><td><button id="219" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#219;'; Comprovar();">&#219;</button></td>
+                    <td>220;</td><td><button id="220" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#220;'; Comprovar();">&#220;</button></td>
+                    <td>221;</td><td><button id="221" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#221;'; Comprovar();">&#221;</button></td>
+                    <td>222;</td><td><button id="222" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#222;'; Comprovar();">&#222;</button></td>
+                    <td>223;</td><td><button id="223" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#223;'; Comprovar();">&#223;</button></td>
+                </tr><tr>
+                    <td>224;</td><td><button id="224" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#224;'; Comprovar();">&#224;</button></td>
+                    <td>225;</td><td><button id="225" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#225;'; Comprovar();">&#225;</button></td>
+                    <td>226;</td><td><button id="226" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#226;'; Comprovar();">&#226;</button></td>
+                    <td>227;</td><td><button id="227" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#227;'; Comprovar();">&#227;</button></td>
+                    <td>228;</td><td><button id="228" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#228;'; Comprovar();">&#228;</button></td>
+                    <td>229;</td><td><button id="229" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#229;'; Comprovar();">&#229;</button></td>
+                    <td>230;</td><td><button id="230" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#230;'; Comprovar();">&#230;</button></td>
+                    <td>231;</td><td><button id="231" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#231;'; Comprovar();">&#231;</button></td>
+                    <td>232;</td><td><button id="232" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#232;'; Comprovar();">&#232;</button></td>
+                    <td>233;</td><td><button id="233" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#233;'; Comprovar();">&#233;</button></td>
+                    <td>234;</td><td><button id="234" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#234;'; Comprovar();">&#234;</button></td>
+                    <td>235;</td><td><button id="235" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#235;'; Comprovar();">&#235;</button></td>
+                    <td>236;</td><td><button id="236" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#236;'; Comprovar();">&#236;</button></td>
+                    <td>237;</td><td><button id="237" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#237;'; Comprovar();">&#237;</button></td>
+                    <td>238;</td><td><button id="238" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#238;'; Comprovar();">&#238;</button></td>
+                    <td>239;</td><td><button id="239" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#239;'; Comprovar();">&#239;</button></td>
+                </tr><tr>
+                    <td>240;</td><td><button id="240" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#240;'; Comprovar();">&#240;</button></td>
+                    <td>241;</td><td><button id="241" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#241;'; Comprovar();">&#241;</button></td>
+                    <td>242;</td><td><button id="242" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#242;'; Comprovar();">&#242;</button></td>
+                    <td>243;</td><td><button id="243" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#243;'; Comprovar();">&#243;</button></td>
+                    <td>244;</td><td><button id="244" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#244;'; Comprovar();">&#244;</button></td>
+                    <td>245;</td><td><button id="245" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#245;'; Comprovar();">&#245;</button></td>
+                    <td>246;</td><td><button id="246" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#246;'; Comprovar();">&#246;</button></td>
+                    <td>247;</td><td><button id="247" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#247;'; Comprovar();">&#247;</button></td>
+                    <td>248;</td><td><button id="248" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#248;'; Comprovar();">&#248;</button></td>
+                    <td>249;</td><td><button id="249" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#249;'; Comprovar();">&#249;</button></td>
+                    <td>250;</td><td><button id="250" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#250;'; Comprovar();">&#250;</button></td>
+                    <td>251;</td><td><button id="251" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#251;'; Comprovar();">&#251;</button></td>
+                    <td>252;</td><td><button id="252" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#252;'; Comprovar();">&#252;</button></td>
+                    <td>253;</td><td><button id="253" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#253;'; Comprovar();">&#253;</button></td>
+                    <td>254;</td><td><button id="254" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#254;'; Comprovar();">&#254;</button></td>
+                    <td>255;</td><td><button id="255" style="height:20px;width:20px" onclick="document.getElementById('pwd').value = 
+                                document.getElementById('pwd').value + '&#255;'; Comprovar();">&#255;</button></td>
+                </tr>
+            </table>
+        </div>
+       
+    </body>
+</html>
