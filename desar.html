@@ -6,8 +6,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
 <html>
     <head>
         <title>Cookies</title>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <style>
+            
+            
+            #teclado {position:relative; top: -40px; left:5px}
+            #Teclat {position:relative; top: -75px; left:80px}
+            
+            #taula {position:relative; top: 10px; left:-37px}
+            
+            #desar {position:relative; top: -45px; left:-45px}
+            #nodesar {position:relative; top: -120px; left:110px}
+            
+            #mostrar_pwd {position:relative; top: -158px; left:75px}
+           
+            #borrar {position:relative; top: -74px; left:150px}
+            #mostrar_guardats {position:relative; top: -52px; left:6px}
+       
+        </style>
+        
+        
+        
     </head>
     <body onload="Iniciar();">
         <div>Vols desar l'inici de sessió a ContraSegur?</div>
@@ -18,18 +39,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             <input type="password" id="pwd" required><br>   
         </form>
         
-        
+
         
         
         
       <script>
-          
-          function Iniciar() {
- 
-              document.getElementById("usr").value = localStorage.getItem("usr");
-              document.getElementById("pwd").value = localStorage.getItem("pwd");
+
+        document.getElementById("usr").value = localStorage.getItem("usr");
+        document.getElementById("pwd").value = localStorage.getItem("pwd");
                
-              }  
+              
+
           function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -62,74 +82,132 @@ function checkCookie() {
       setCookie("usr", user, 365);
     }
   }
-}
+}       
     function keyboard(){
                 document.getElementById("Teclat").hidden = !document.getElementById("Teclat").hidden;  
             }
     function ASCII(){
                 document.getElementById("taulaASCII").hidden = !document.getElementById("taulaASCII").hidden;  
             }
-    /*        
-    function borrar_info(){
+            
+    let storedValue = null;      
+        
+      function Iniciar() {
+                let usr = document.getElementById('usr').value;
+                let pwd = document.getElementById('pwd').value;
+
+                }             
+        function desar(){ 
+                
+                let usr = document.getElementById('usr').value;
+                let pwd = document.getElementById('pwd').value;
+                
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let cookies = decodedCookie.split(';');
+
+                
+                let storedValue = null;      
+
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    let parts = cookie.split('=');
+
+                    if (parts[0] === usr) {
+                        storedValue = parts[1];
+                        break;
+                    }
+                }
+               
+    /**/ 
+     if (!storedValue) {
+                    setCookie(usr, pwd, 1000);
+                    alert("Inici de sessió guardat!");
+                } else {
+                    if (storedValue !== pwd) {
+                        let confirmChange = confirm("Vol canviar la contrasenya?");
+                        if (confirmChange) {
+                            setCookie(usr, pwd, 1000);
+                            alert("Inici de sessió guardat!");
+                        }
+                    } else {
+                        alert("Benvingut de nou " + usr);
+                    }
+                }
+           }   
+                
+
+            /**/
+ 
+    function borrar(){
+        document.getElementById("usr").value = "";
+        document.getElementById("pwd").value = "";
+    }
+    function mostrar_pwd() {
+      var passwordField = document.getElementById('pwd');
+      var button = document.getElementById('mostrar_pwd');
+      
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        button.textContent = 'Ocultar'; // Cambia el texto del botón a "Ocultar"
+      } else {
+        passwordField.type = 'password';
+        button.textContent = 'Mostrar'; // Cambia el texto del botón a "Mostrar"
+      }
+    }
+     function mostrar_guardats() {
+                const myWindow = window.open("", "_blank", "width=450, height=500, left=0, top=0, \n\
+                            location=0, menubar=0, resizable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
+                 myWindow.document.open();
+                myWindow.document.write(`
+                      <html>
+                      <head>
+                          <meta charset="UTF-8">
+                          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      </head>
+                      <body>
+                          <table border="1">
+                              <tr>
+                                  <th>Usuari o correu:</th>
+                                  <th>Contrasenya:</th>
+                              </tr>
+                  `);                 
+                 decodedCookie = decodeURIComponent(document.cookie);
+                 cookies = decodedCookie.split(';');
+          
+                for (let i = 0; i < cookies.length; i++) {
+                    let ca = cookies[i].split("=");
+                    myWindow.document.write("<tr><td>" + ca[0] + "</td><td>" + ca[1] + "</td></tr>");
+                }
+
+                myWindow.document.write("</table></body></html>");
+                myWindow.document.close();
                  
             } 
-    function desar(){
-                
-            } 
-    function nodesar(){
-               
-            } 
-    function ventana_desar(){
-               <html
-<head>
-<title> TABLAaa</title>
-</head>
+               function no_desar() {
+                usr = document.getElementById('usr').value;
+                document.cookie = usr + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"; 
+                window.alert("Inici de sessió s'ha esborrat!");
+                window.close();
 
-<body>
-
-
-
-<table>
-<tr>
- 
-  <th>
- <b>Usuari o correu</b>
-  </th>
-  <th>
- <b>Contrasenya</b>
-  </th>
- 
- </tr>
- 
-
- <tr>
-  <td>
-  </td>
-  <td >
-  </td>
- </tr>
-</table>
-
-
-</body>
-
-</html>
-
-            } 
-            } 
+            }
+    
             
-           */
+       /*    */
           
     
         </script>
        <!--  <script></script>-->
       
-        <button id="borrar" type="button" onclick="borrar_info()"> <img src="img/trash-can.png" alt=""/></button><p>  
+        <button id="borrar" type="button" onclick="borrar()"> <img src="img/trash-can.png" alt=""/></button><p>  
         <button id="teclado" type="button" onclick="keyboard();"><img src="img/keyboard.png" alt=""/></button>
         <button id="taula" type="button" onclick="ASCII();">ASCII</button>   
              
-         <button id="desar" type="button" onclick="desar();">DESAR</button><p>
-        <button id="no_desar" type="button" onclick="nodesar()">NO DESAR</button><p>    
+         <button id="desar" type="button" onclick="desar();">Desar</button><p>
+         <button id="mostrar_guardats" type="button" onclick="mostrar_guardats();">mostrar guardats</button><p>
+
+         <button id="nodesar" type="button" onclick="no_desar();">No Desar</button>   
+
+        <button id="mostrar_pwd" type="button" onclick="mostrar_pwd()">Mostrar</button><p>    
              
         <div id="Teclat" translate="no" >
             <table id="Minus"><strong>

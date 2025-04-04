@@ -8,15 +8,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>Contraseñes Segures</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/js_diccionaris_patrons.js" type="text/javascript"></script>
         <script src="js/zxcvbn-async.js" type="text/javascript"></script>
+        
+        <script src="js/alasql.js" type="text/javascript"></script>
+        <script src="js/sql.js" type="text/javascript"></script>
+        <script src="js/SHA1_MD5.js" type="text/javascript"></script>
+        <script src="js/md5.min.js" type="text/javascript"></script>
+        
         <style>
             #idioma {position:relative; top: -430px; left:220px}
-            #teclado {position:relative; top: -300px; left:220px}
-            #Teclat {position:relative; top: -270px; left:240px}
-           
+            #teclado {position:relative; top: -350px; left:170px}
+            #Teclat {position:relative; top: -380px; left:240px}
+            #iniciar {position:relative; top: 5px; left:0px}
+
         </style>
          
-        <script src="js/js_diccionaris_patrons.js" type="text/javascript"></script>
+       
     </head>
     
     <body>  
@@ -30,7 +38,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <input type="password" id="pwd" onchange="Comprovar();" required><br>   
         </form>
         
-        <button id="iniciar" onclick="Iniciar();">Iniciar sesión</button><p>
+        <button id="iniciar" onclick="Iniciar();" style="background-color: steelblue; color: white;">Iniciar sesión</button><p>
         
       <input type="checkbox" id="minimcar" disabled>Mínim 8 caràcters,<br> 
         <input type="checkbox" id="may" disabled> almenys una lletra majúscula,<br>
@@ -51,15 +59,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
          Patrons </a> <input type="file" id="patrons" />
          
          
-          
         
          <script>
+        localStorage.setItem("usr", "pwd");
         document.getElementById('Diccionari').addEventListener('change', readSingleFile, false );
         document.getElementById('patrons').addEventListener('change', readSingleFile, false );  
             </script>
       
         
-        
+        <!--  -->
         <div id="idioma" translate="no"> 
         <a href="https://dreamy-kleicha-d4c27a.netlify.app/"   
             id='ca'><img src="img/ca.png" alt=""/></a>
@@ -76,8 +84,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             id='it'><img src="img/it.png" alt=""/></a>
         <a href="https://dreamy--kleicha--d4c27a-netlify-app.translate.goog/?_x_tr_sl=auto&_x_tr_tl=de&_x_tr_hl=es&_x_tr_pto=wapp"   
             id='de'><img src="img/de.png" alt=""/></a> 
+            
+            <select name="Idiomes" id="Idiomes"
+                onchange="CanviarIdioma(this.value)" title="Select">
+                <option value="ca"> ca </option>
+                <option value="es"> es </option>
+                <option value="en"> en </option>
+                 <option value="fr"> fr </option>
+              <!--  <option value="it"> it </option>
+                <option value="gr"> gr </option>    -->
+            </select>
         </div>
-
+            
          <button id="teclado" type="button" onclick="keyboard();"><img src="img/keyboard.png" alt=""/></button><p>
         <button id="taula" type="button" onclick="ASCII();">ASCII</button><p>    
              
